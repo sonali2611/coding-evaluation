@@ -4,7 +4,7 @@
 var matArr=JSON.parse(localStorage.getItem("schedule"))||[]
 displayData(matArr)
 
-var favArr=JSON.parse(localStorage.getItem("schedule"))||[];
+var favArr=JSON.parse(localStorage.getItem("favourites"))||[];
 
 
 function handleFilter()
@@ -19,7 +19,7 @@ function handleFilter()
 
 function displayData(data)
 {
-    document.querySelector("tbody").innerHTML=null;
+    document.querySelector("tbody").innerHTML="";
     data.forEach(function(elem){
     var tr=document.createElement("tr")
 
@@ -46,10 +46,22 @@ function displayData(data)
     document.querySelector("tbody").append(tr);
     });
    
-}
+
 
 function favFunction(elem)
 {
 favArr.push(elem)
-localStorage.setItem("favourites", stringify(favArr))
+localStorage.setItem("favourites", JSON.stringify(favArr))
+}
+
+
+function handleFilter()
+{
+    var selected=document.getElementById("filterVenue").value;
+    var filteredList=matArr.filter(function(elem){
+        return elem.venue==selected
+    });
+    displayData(filteredList)
+    // console.log(filteredList)
+}
 }

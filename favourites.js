@@ -1,13 +1,16 @@
 // write js code here corresponding to favourites.html
 
 
+// var matArr=JSON.parse(localStorage.getItem("schedule"));
 
 var favArr=JSON.parse(localStorage.getItem("favourites"))
 displayData(favArr)
 
+// document.querySelector("tbody").innerHTML=""
+
 function displayData(data)
 {
-    document.querySelector("tbody").innerHTML=""
+    
     data.forEach(function(elem,index){
     
     var tr=document.createElement("tr")
@@ -33,9 +36,10 @@ function displayData(data)
     document.querySelector("tbody").append(tr);
     });
 
-function favFunction(elem,index){
-    favArr.splice(index,1)
-    localStorage.setItem("favourites",JSON.stringify(favArr))
-    window.location.reload();
-}
+    function favFunction(elem,index)
+    {
+        favArr.splice(index,1)
+        localStorage.setItem("favourites",JSON.stringify(favArr))
+        window.location.reload();
+    }
 }
